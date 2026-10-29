@@ -1,0 +1,35 @@
+{
+  "name": "career-archive-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/copy-pdf-assets.mjs && vite",
+    "build": "node scripts/copy-pdf-assets.mjs && tsc -b && vite build",
+    "build:hosted": "node scripts/build-hosted.mjs",
+    "build:cloudbase": "node scripts/build-cloudbase.mjs",
+    "build:cloudbase-static": "node scripts/build-cloudbase-static.mjs",
+    "package:cloudbase-static": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-cloudbase-static.ps1",
+    "check:hosted": "node --test tests/hostedGateway.test.mjs",
+    "check:cloudbase": "node --test tests/cloudbaseServer.test.mjs",
+    "lint": "oxlint",
+    "test": "node --test tests/*.test.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@cloudbase/js-sdk": "3.10.2",
+    "pdfjs-dist": "^6.4.299",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "fake-indexeddb": "^6.2.5",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

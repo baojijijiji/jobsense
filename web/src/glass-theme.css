@@ -1,0 +1,265 @@
+/* E · Warm champagne. Work surfaces stay legible; the resume remains a white sheet. */
+@media screen {
+  :root {
+    --glass-surface: color-mix(in srgb, var(--paper) 37%, transparent);
+    --glass-shell-surface: color-mix(in srgb, var(--paper) 20%, transparent);
+    --glass-raised: color-mix(in srgb, var(--paper) 91%, transparent);
+    --glass-control: color-mix(in srgb, var(--paper) 43%, transparent);
+    --glass-border: rgba(255, 255, 255, .76);
+    --glass-divider: color-mix(in srgb, var(--ink) 12%, transparent);
+    --glass-record-surface: color-mix(in srgb, var(--paper) 47%, transparent);
+    --glass-record-hover: color-mix(in srgb, var(--paper) 72%, transparent);
+    --glass-shadow: 0 18px 56px rgba(62, 56, 42, .035), inset 0 1px 1px #fff9;
+    --glass-halo: rgba(213, 200, 167, .22);
+    --glass-cool-halo: rgba(194, 210, 218, .18);
+    --glass-texture-opacity: 1;
+    --glass-texture-filter: none;
+    --glass-texture-blend: normal;
+  }
+  :root:not([data-theme^="custom"]) {
+    --ink: #2c2d29; --muted: #6d6f68; --canvas: #e8e6e0; --paper: #f8f7f3;
+    --control-surface: #f7f6f2; --line: #d4d3cb;
+    --accent: #bcb298; --accent-strong: #686250; --accent-soft: #e8e3d7;
+    --accent-border: #d6ceba; --accent-hover: #b8af96;
+    --accent-button: #363832; --accent-button-hover: #242720; --accent-button-ink: #faf9f4;
+    --accent-shadow: rgba(57, 54, 43, .14); --accent-icon: #5d6157;
+  }
+  :root[data-theme="green"] {
+    --canvas: #e4e9e2; --paper: #f6f8f3; --accent: #9eae9c; --accent-soft: #e0e7dc;
+    --accent-strong: #596753; --accent-border: #c7d2c0; --glass-halo: #b5c9a62b;
+    --glass-texture-blend: luminosity;
+  }
+  :root[data-theme="blue"] {
+    --canvas: #e3e9eb; --paper: #f6f8f9; --accent: #a0b3c0; --accent-soft: #dee7eb;
+    --accent-strong: #546774; --accent-border: #c4d2db; --glass-halo: #c4d5e63d;
+    --glass-texture-blend: luminosity;
+  }
+  :root[data-theme="dark"] {
+    --canvas: #242722; --paper: #33372f; --control-surface: #363b31;
+    --ink: #efefe7; --muted: #b6b9ae; --line: #505548; --accent: #c0b79f;
+    --accent-strong: #ded6c0; --accent-soft: #424638; --accent-border: #666b57;
+    --accent-button: #dddccf; --accent-button-hover: #f0eee1; --accent-button-ink: #262a22;
+    --accent-icon: #c8cdbb; --accent-shadow: #0002;
+  }
+  :root[data-color-scheme="dark"] {
+    --glass-border: color-mix(in srgb, var(--ink) 16%, transparent);
+    --glass-surface: color-mix(in srgb, var(--paper) 65%, transparent);
+    --glass-shell-surface: color-mix(in srgb, var(--paper) 44%, transparent);
+    --glass-raised: color-mix(in srgb, var(--paper) 97%, transparent);
+    --glass-shadow: 0 18px 50px #0001, inset 0 1px 1px #ffffff08;
+    --glass-halo: color-mix(in srgb, var(--accent) 8%, transparent);
+    --glass-cool-halo: rgba(145, 162, 154, .05);
+    --glass-texture-opacity: .38;
+    --glass-texture-filter: grayscale(1) brightness(.36);
+    --glass-texture-blend: luminosity;
+  }
+  :root[data-theme^="custom"] {
+    --muted: color-mix(in srgb, var(--ink) 67%, var(--paper));
+    --glass-border: var(--line);
+    --glass-halo: color-mix(in srgb, var(--custom-palette-accent) 16%, transparent);
+    --glass-cool-halo: color-mix(in srgb, var(--custom-palette-accent) 6%, transparent);
+  }
+  :root[data-theme="custom-light"] {
+    --glass-texture-opacity: .72;
+    --glass-texture-filter: grayscale(1);
+    --glass-texture-blend: luminosity;
+  }
+  body {
+    position: relative; isolation: isolate; background: var(--canvas);
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: url('./assets/champagne-silk-v2.png') center center / cover no-repeat;
+    opacity: var(--glass-texture-opacity); filter: var(--glass-texture-filter);
+    mix-blend-mode: var(--glass-texture-blend);
+  }
+  .app-shell.glass-app {
+    margin: 32px; min-height: calc(100dvh - 64px); grid-template-columns: 214px minmax(0, 1fr);
+    background: var(--glass-shell-surface); border: 1px solid var(--glass-border); border-radius: 28px;
+    box-shadow: var(--glass-shadow); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .app-shell.glass-app::before, .app-shell.glass-app::after,
+  .glass-app .card::before, .glass-app .stat-card::before { content: none; display: none; }
+  .app-shell.glass-app > .sidebar {
+    position: sticky; top: 32px; height: calc(100dvh - 64px); max-height: none; padding: 29px 15px 22px;
+    border-color: var(--glass-border); border-radius: 28px 0 0 28px;
+    background: color-mix(in srgb, var(--paper) 16%, transparent);
+  }
+  .glass-app .brand { padding: 5px 17px 43px; }
+  .glass-app .brand > strong { font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 500; letter-spacing: -.06em; }
+  .glass-app .nav-caption { display: none; }
+  .glass-app .nav-list { gap: 12px; }
+  .glass-app .nav-item { min-height: 56px; padding: 13px 16px; gap: 15px; border: 1px solid transparent; border-radius: 15px; color: var(--ink); font-size: calc(14px * var(--ui-text-scale)); font-weight: 400; }
+  .glass-app .nav-item.active { background: var(--accent-button); color: var(--accent-button-ink); border-color: #ffffff26; box-shadow: inset 0 1px 3px #ffffff2b, 0 7px 20px #2e2d2410; font-weight: 400; }
+  .glass-app .nav-item:hover:not(.active) { background: var(--glass-record-hover); border-color: var(--glass-border); }
+  .glass-app .nav-icon { width: 22px; height: 22px; flex-basis: 22px; color: currentColor; image-rendering: auto; }
+  .glass-app .nav-count { font-size: 10px; opacity: .65; color: currentColor; }
+  .glass-app .nav-history { margin-top: 10px; border-top: 1px solid var(--glass-divider); border-radius: 0 0 15px 15px; }
+  .glass-app .sidebar-bottom { padding: 32px 6px 0; opacity: .9; }
+  .glass-app .sync-card { padding: 12px 8px; background: transparent; border: 0; box-shadow: none; }
+  .glass-app .sync-title { color: var(--muted); font-size: 10px; flex-wrap: wrap; }
+  .glass-app .sync-card p { font-size: 9px; color: var(--muted); }
+  .glass-app .profile-mini { display: none; }
+  .glass-app .main-area { border-radius: 0 28px 28px 0; min-width: 0; }
+  .glass-app .topbar { min-height: 99px; padding: 24px 36px 19px 42px; background: transparent; border: 0; border-radius: 0 28px 0 0; backdrop-filter: none; position: relative; z-index: 12; }
+  .glass-app .top-actions { width: 100%; gap: 14px; }
+  .glass-app .search-control { width: auto; flex: 1; max-width: 720px; min-width: 130px; margin-right: auto; }
+  .glass-app .search-control input { height: 48px; padding-left: 48px; border: 1px solid var(--glass-border); border-radius: 40px !important; background: var(--glass-control); color: var(--ink); font-size: calc(12px * var(--ui-text-scale)); box-shadow: inset 0 1px 2px #ffffff75; }
+  .glass-app .search-control > .search-pixel-icon { width: 20px; height: 20px; left: 17px; top: 14px; color: var(--muted); }
+  .glass-app .theme-trigger, .glass-app .toolbar-history, .glass-app .theme-mode-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 6px; gap: 10px; border: 0; border-radius: 12px; background: transparent; color: var(--ink); font-size: 12px; white-space: nowrap; }
+  .glass-app .toolbar-history { padding: 6px 8px; }
+  .glass-app .toolbar-history svg, .glass-app .theme-mode-toggle > svg { width: 21px; height: 21px; }
+  .glass-app .toolbar-history:hover, .glass-app .theme-trigger:hover, .glass-app .theme-mode-toggle:hover { background: var(--glass-record-hover); }
+  .toolbar-divider { width: 1px; height: 21px; background: var(--glass-divider); flex-shrink: 0; margin: 0 1px; }
+  .glass-app .typography-trigger { font-family: Georgia, serif; min-width: 30px; }
+  .glass-app .typography-trigger > span { font-size: 17px; font-weight: 400; }
+  .glass-app .theme-palette-trigger svg { width: 18px; height: 18px; color: var(--muted); }
+  .theme-toggle-track { width: 34px; height: 20px; border-radius: 20px; background: color-mix(in srgb, var(--accent) 78%, var(--paper)); box-shadow: inset 0 1px 3px #59544018; padding: 3px; display: block; }
+  .theme-toggle-track i { display: block; width: 14px; height: 14px; border-radius: 50%; background: #fffef8; transform: translateX(14px); box-shadow: 0 1px 3px #4944321c; transition: transform .18s; }
+  [aria-checked="true"] .theme-toggle-track i { transform: translateX(0); }
+  .workspace-tools { position: relative; flex-shrink: 0; }
+  .workspace-tools > summary { list-style: none; cursor: pointer; border-radius: 50%; }
+  .workspace-tools > summary::-webkit-details-marker { display: none; }
+  .toolbar-avatar { width: 43px; height: 43px; border-radius: 50%; border: 1px solid var(--glass-border); display: grid; place-items: center; background: var(--glass-control); font-family: Georgia, SimSun, serif; color: var(--ink); font-size: 18px; }
+  .workspace-tools-menu { position: absolute; right: 0; top: 54px; z-index: 30; min-width: 245px; padding: 22px; background: var(--glass-raised); border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: 0 16px 50px #26261c1a; backdrop-filter: blur(25px); }
+  .workspace-tools-menu > strong { display: block; font-size: 13px; overflow-wrap: anywhere; }
+  .workspace-tools-menu > p { color: var(--muted); font-size: 11px; margin-bottom: 16px; }
+  .workspace-tools-menu .theme-trigger { border: 1px solid var(--line); padding: 10px; white-space: normal; }
+  .workspace-tools-menu .workspace-typography { margin-bottom: 10px; width: 100%; }
+  .glass-app .theme-menu { width: 255px; top: 48px; padding: 13px; border-radius: 20px; background: var(--glass-raised); border-color: var(--glass-border); box-shadow: 0 18px 50px #26261c1a; backdrop-filter: blur(25px); }
+  .glass-app .theme-option { padding: 12px; border-radius: 11px; color: var(--ink); background: transparent; }
+  .glass-app .theme-option.selected { background: var(--accent-soft); }
+  .glass-app .theme-option-swatch.gold { background: #c3b89d; }
+  .glass-app .theme-option-swatch.green { background: #a6b49e; }
+  .glass-app .theme-option-swatch.blue { background: #afc2cc; }
+  .glass-app .page-content { padding: 26px 38px 48px; max-width: 1560px; }
+  .glass-app .page-heading { align-items: center; margin-bottom: 28px; }
+  .glass-app .eyebrow { font-size: 9px; letter-spacing: .24em; color: var(--muted); margin-bottom: 12px; }
+  .glass-app .page-heading h1 { font-family: "Songti SC", "Noto Serif CJK SC", SimSun, serif; font-size: calc(33px * var(--ui-text-scale)); font-weight: 500; }
+  .glass-app .lead { color: var(--muted); font-size: calc(12px * var(--ui-text-scale)); }
+  .app-shell.glass-app .card, .app-shell.glass-app .stat-card,
+  .app-shell.glass-app .experience-card, .app-shell.glass-app .upload-area {
+    background: var(--glass-surface); border: 1px solid var(--glass-border); border-radius: 23px;
+    box-shadow: var(--glass-shadow); backdrop-filter: blur(18px);
+  }
+  .app-shell.glass-app .card { padding: 23px; }
+  .app-shell.glass-app .card-heading h2, .glass-app .section-heading h2 { font-size: calc(14px * var(--ui-text-scale)); font-weight: 500; }
+  .app-shell.glass-app .button { min-height: 40px; padding: 9px 18px; border: 1px solid var(--glass-border); border-radius: 30px; background: var(--glass-control); color: var(--ink); box-shadow: inset 0 1px 1px #ffffff60; font-size: calc(11px * var(--ui-text-scale)); font-weight: 400; }
+  .app-shell.glass-app .button.primary { background: linear-gradient(150deg, color-mix(in srgb, var(--accent-button) 91%, white), var(--accent-button)); color: var(--accent-button-ink); border-color: color-mix(in srgb, var(--accent-button) 84%, var(--paper)); box-shadow: inset 0 1px 2px #ffffff28, 0 5px 15px var(--accent-shadow); }
+  .app-shell.glass-app .button.primary:hover:not(:disabled) { background: var(--accent-button-hover); }
+  .app-shell.glass-app .button.danger { color: #9b4d42; border-color: #cfa59d; background: color-mix(in srgb, #f3e0dc 38%, var(--paper)); }
+  .app-shell.glass-app .button:hover:not(:disabled) { transform: translateY(-1px); border-color: var(--accent-border); }
+  .glass-app .pixel-icon, .glass-app .nav-icon, .glass-app .stat-symbol { image-rendering: auto; }
+  .glass-app .hint, .glass-app .privacy-note, .glass-app .matching-note, .glass-app .section-label { color: var(--muted); }
+  .glass-app .tag, .glass-app .filter-chip { border-radius: 25px; }
+  .glass-app .filter-chip { background: var(--glass-control); border-color: var(--glass-border); color: var(--muted); }
+  .glass-app .filter-chip.active { background: var(--accent-button); color: var(--accent-button-ink); border-color: transparent; }
+  .app-shell.glass-app input:not([type="file"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+  .app-shell.glass-app textarea, .app-shell.glass-app select {
+    border: 1px solid color-mix(in srgb, var(--line) 82%, transparent); border-radius: 13px;
+    background: color-mix(in srgb, var(--paper) 74%, transparent); color: var(--ink);
+    box-shadow: inset 0 1px 2px #ffffff4a;
+  }
+  .glass-app textarea { line-height: 1.85; }
+  .glass-app .record-row, .glass-app .application-row, .glass-app .file-row { border-color: var(--glass-divider); }
+  .glass-app .record-mark, .glass-app .stat-symbol { background: transparent; color: var(--ink); border-radius: 10px; }
+  .glass-app .record-content small { color: var(--muted); }
+  .glass-app .resume-preview-wrap { border-radius: 20px; border-color: var(--glass-border); background: var(--glass-surface); }
+  .glass-app .resume-paper { background: #fff; color: #222; box-shadow: 0 12px 35px #29271d0d; }
+  .glass-app .resume-paper .resume-text, .glass-app .resume-paper .resume-header p { color: #222; }
+  .glass-app .storage-banner { margin: 0 30px 14px; border-radius: 15px; background: var(--glass-raised); border: 1px solid var(--line); color: var(--ink); }
+  .glass-app .inline-error, .glass-app .transfer-error { color: #a54b3e; }
+  :root dialog.confirm-dialog, :root dialog.typography-dialog, :root dialog.match-history-dialog, :root dialog.attachment-dialog {
+    border: 1px solid var(--glass-border); border-radius: 24px; background: var(--glass-raised); color: var(--ink);
+    box-shadow: 0 25px 90px #25251e30, inset 0 1px 1px #ffffff65; backdrop-filter: blur(28px);
+  }
+  dialog.confirm-dialog::backdrop, dialog.typography-dialog::backdrop, dialog.match-history-dialog::backdrop, dialog.attachment-dialog::backdrop { background: #34352c60; backdrop-filter: blur(5px); }
+  :root .match-history-sidebar { background: var(--glass-surface); }
+  :root .match-history-item { border-radius: 14px; background: var(--glass-control); }
+  :root .match-history-section, :root .match-history-preview { border-radius: 14px; }
+  :root .match-history-item.selected { box-shadow: inset 3px 0 var(--accent); }
+  :root .match-history-dialog .button, :root .typography-dialog .button, :root .confirm-dialog .button { border-radius: 25px; }
+  .cloud-access.cloud-access { background: transparent; }
+  .cloud-access .cloud-access-card { padding: 46px; width: min(100%, 455px); border: 1px solid var(--glass-border); border-radius: 28px; background: var(--glass-surface); box-shadow: var(--glass-shadow); backdrop-filter: blur(24px); }
+  .cloud-access .cloud-access-card h1 { font-family: Georgia, "Times New Roman", serif; font-size: 39px; font-weight: 400; letter-spacing: -.04em; }
+  .cloud-access .cloud-access-mark { border-radius: 50%; background: var(--glass-control); color: var(--ink); border: 1px solid var(--glass-border); font-family: Georgia, serif; font-weight: 400; }
+  .cloud-access .cloud-access-card input { background: var(--glass-control); border-radius: 14px; border-color: var(--glass-border); min-height: 48px; }
+  .cloud-access .cloud-access-submit { background: var(--accent-button); color: var(--accent-button-ink); border-radius: 30px; min-height: 49px; font-weight: 400; box-shadow: 0 5px 16px var(--accent-shadow); }
+  .cloud-session-bar.cloud-session-bar, .cloud-doc-sync.cloud-doc-sync { background: transparent; color: var(--muted); font-size: 10px; padding: 7px 38px; }
+  .cloud-doc-sync.cloud-doc-sync { padding-block: 3px; gap: 6px 16px; }
+  .cloud-doc-sync.cloud-doc-sync.sync-failed { background: #f8e5df; color: #9a493b; }
+  :root[data-color-scheme="dark"] .cloud-doc-sync.cloud-doc-sync.sync-failed { background: #45302a; color: #f1bcaa; }
+  .cloud-doc-sync + .app-shell { margin-top: 18px; }
+  .glass-app .mobile-nav { background: var(--glass-raised); backdrop-filter: blur(24px); border-color: var(--glass-border); }
+  :root[data-color-scheme="dark"] .app-shell.glass-app .nav-item.active { background: var(--accent-button); color: var(--accent-button-ink); border-color: #ffffff26; }
+  :root[data-color-scheme="dark"] .app-shell.glass-app .card,
+  :root[data-color-scheme="dark"] .app-shell.glass-app .stat-card { background: var(--glass-surface); color: var(--ink); }
+  :root[data-color-scheme="dark"] .app-shell.glass-app .theme-menu { background: var(--glass-raised); color: var(--ink); }
+  :root[data-color-scheme="dark"] .app-shell.glass-app .theme-trigger,
+  :root[data-color-scheme="dark"] .app-shell.glass-app .theme-option { background: transparent; color: var(--ink); border-color: var(--glass-border); }
+  :root[data-color-scheme="dark"] .app-shell.glass-app .theme-option.selected { background: var(--accent-soft); }
+  :root[data-color-scheme="dark"] .app-shell.glass-app .button:not(.primary) { background: var(--glass-control); color: var(--ink); border-color: var(--glass-border); }
+  :root[data-color-scheme="dark"] .app-shell.glass-app input:not([type="file"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+  :root[data-color-scheme="dark"] .app-shell.glass-app textarea,
+  :root[data-color-scheme="dark"] .app-shell.glass-app select { background: color-mix(in srgb, var(--paper) 74%, transparent); color: var(--ink); border-color: var(--line); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+  @media (max-width: 1320px) {
+    .app-shell.glass-app { margin: 20px; min-height: calc(100dvh - 40px); grid-template-columns: 190px minmax(0, 1fr); }
+    .app-shell.glass-app > .sidebar { top: 20px; height: calc(100dvh - 40px); padding-inline: 12px; }
+    .glass-app .topbar { padding-inline: 24px; }
+    .glass-app .top-actions { gap: 9px; }
+    .glass-app .nav-item { padding-inline: 12px; font-size: 12px; }
+    .glass-app .brand { padding-inline: 13px; }
+    .glass-app .brand > strong { font-size: 26px; }
+  }
+  @media (max-width: 1050px) {
+    .glass-app .toolbar-history > span { display: none; }
+    .glass-app .top-actions { gap: 6px; }
+    .glass-app .page-content { padding: 20px 24px 40px; }
+    .glass-app .page-heading { flex-wrap: wrap; align-items: flex-start; }
+    .glass-app .button-row { flex-wrap: wrap; }
+  }
+  @media (max-width: 820px) {
+    .app-shell.glass-app { margin: 12px; min-height: calc(100dvh - 24px); display: block; border-radius: 23px; padding-bottom: 78px; }
+    .app-shell.glass-app > .sidebar { display: none; }
+    .glass-app .main-area { border-radius: 23px; }
+    .glass-app .topbar { min-height: 82px; padding: 16px; border-radius: 23px 23px 0 0; }
+    .glass-app .top-actions { flex-wrap: nowrap; }
+    .glass-app .search-control { min-width: 0; margin: 0 auto 0 0; }
+    .glass-app .toolbar-divider, .glass-app .typography-trigger { display: none; }
+    .glass-app .theme-mode-toggle { gap: 4px; }
+    .glass-app .theme-mode-toggle > svg { width: 18px; }
+    .glass-app .toolbar-avatar { width: 34px; height: 34px; font-size: 16px; }
+    .glass-app .theme-toggle-track { width: 29px; height: 18px; }
+    .glass-app .theme-toggle-track i { width: 12px; height: 12px; transform: translateX(11px); }
+    .glass-app .theme-menu { right: -44px; }
+    .glass-app .mobile-nav { position: fixed; inset: auto 20px 18px; border: 1px solid var(--glass-border); display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; padding: 9px 5px; border-radius: 22px; z-index: 20; box-shadow: 0 10px 30px #28271c18; }
+    .glass-app .mobile-nav button { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; border: 0; border-radius: 14px; padding: 7px 2px; background: transparent; color: var(--muted); font-size: 9px; }
+    .glass-app .mobile-nav button.active { color: var(--accent-button-ink); background: var(--accent-button); }
+    .glass-app .mobile-nav-icon { width: 18px; height: 18px; }
+    .cloud-session-bar.cloud-session-bar, .cloud-doc-sync.cloud-doc-sync { padding-inline: 18px; }
+  }
+  @media (max-width: 560px) {
+    .app-shell.glass-app { margin: 8px; }
+    .glass-app .topbar { min-height: 73px; padding: 14px 12px; }
+    .glass-app .top-actions { gap: 3px; }
+    .glass-app .search-control input { height: 40px; font-size: 10px; padding-left: 34px; padding-right: 7px; }
+    .glass-app .search-control > .search-pixel-icon { width: 16px; height: 16px; top: 12px; left: 12px; }
+    .glass-app .theme-mode-toggle > svg { display: none; }
+    .glass-app .theme-palette-trigger { padding-inline: 4px; }
+    .glass-app .toolbar-history { padding: 4px; }
+    .glass-app .toolbar-history svg { width: 19px; }
+    .glass-app .page-content { padding: 15px 16px 32px; }
+    .app-shell.glass-app .card { padding: 17px; border-radius: 19px; }
+    .glass-app .page-heading h1 { font-size: calc(27px * var(--ui-text-scale)); }
+    .workspace-tools-menu { min-width: 220px; }
+    .cloud-access .cloud-access-card { padding: 31px 25px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glass-app button, .theme-toggle-track i { transition: none; }
+  }
+}
+@media print {
+  .app-shell.glass-app { border: 0; box-shadow: none; border-radius: 0; backdrop-filter: none; }
+  .app-shell.glass-app::before, .app-shell.glass-app::after { content: none; display: none; }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "version": "2.1",
+  "envId": "{{env.CLOUDBASE_ENV_ID}}",
+  "functionRoot": ".cloudbase-build/functions",
+  "functions": [
+    {
+      "name": "jobsense",
+      "type": "HTTP",
+      "runtime": "Nodejs20.19",
+      "memorySize": 256,
+      "timeout": 90
+    }
+  ]
+}

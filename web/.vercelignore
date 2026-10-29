@@ -1,0 +1,12 @@
+node_modules
+.node_modules-stale
+.cloudbase-build
+.runtime
+dist
+public/pdf-assets
+.env
+.env.*
+!.env.example
+*.local
+*.log
+.git

@@ -1,0 +1,4 @@
+附件验收样例（完全虚构）
+项目：校园节能分析
+Python English 数据整理
+<img src=x onerror=alert(1)> 这段应以普通文字显示。
