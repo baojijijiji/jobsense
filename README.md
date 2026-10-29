@@ -10,13 +10,32 @@ React · TypeScript · CloudBase · PostgreSQL · DeepSeek · Vercel
 
 ## 界面预览
 
-**首页设计概念图** · 暖灰香槟玻璃风格。该图是设计参考，使用示例内容；实际界面及数据可能有所不同。
+以下是实际使用中的页面截图，展示暖灰香槟主题及岗位匹配流程。
+
+**岗位匹配** · 粘贴目标岗位信息，准备候选经历并选择 AI 改写。
+
+![JobSense 岗位匹配页面](docs/images/job-matching.png)
+
+**AI 识别岗位重点** · 展示提取的岗位要点及对应招聘原句，方便核对。
+
+![JobSense AI 识别岗位重点](docs/images/ai-job-analysis.png)
+
+**技能与证书** · 按类别整理，支持按岗位相关度推荐及手动调整。
+
+![JobSense 技能与证书分类勾选](docs/images/skill-selection.png)
+
+<details>
+<summary>查看更多：岗位历史实装截图与首页设计参考</summary>
+
+**岗位历史界面** · 2026-10-24 的实装截图，使用虚构资料；当前版本视觉样式可能有所变化。
+
+![JobSense 岗位匹配历史界面，虚构资料](docs/images/match-history-demo.png)
+
+**首页设计概念图** · 暖灰香槟玻璃风格设计参考，使用示例内容；与实际页面可能存在差异。
 
 ![JobSense 暖灰香槟首页设计概念图](docs/images/home-design-concept.png)
 
-**岗位历史界面** · 2026-10-24 的实装截图，使用虚构资料。当前版本视觉样式可能有所变化。
-
-![JobSense 岗位匹配历史界面，虚构资料](docs/images/match-history-demo.png)
+</details>
 
 ## 从经历到投递
 
@@ -90,4 +109,4 @@ pnpm build
 
 项目作者负责需求拆解、交互与流程设计、方案选择、测试和迭代，使用 Codex 辅助编写与修改代码。
 
-项目代码许可证尚待确定，第三方组件保留各自的许可与声明。暖灰香槟设计概念图及丝绸背景由 AI 图像工具生成；截图中的资料为虚构演示。
+项目代码许可证尚待确定，第三方组件保留各自的许可与声明。暖灰香槟设计概念图及丝绸背景由 AI 图像工具生成；岗位历史截图中的资料为虚构演示；实际界面截图来自真实使用场景。
